@@ -1,0 +1,11 @@
+{
+  "name": "hanoi",
+  "version": "1.0.0",
+  "description": "The counterpart to the tic-tac-to project, but they had us use their game.js instead of ours.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
