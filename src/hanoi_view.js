@@ -1,13 +1,11 @@
 class View {
     constructor(HanoiGame, $el) {
         this.game = HanoiGame;
-        this.el = $el;
+        this.$el = $el;
         this.clickedPile = undefined;
         
         this.setUpTowers();
-
-        // call render
-
+        this.render();
         // install a click handler on each ul, callback = clickTower
     }
 
@@ -25,7 +23,7 @@ class View {
 
             $container.append($pile);
             $container.append($line);
-            this.el.append($container);
+            this.$el.append($container);
         }
     }
 
@@ -41,7 +39,20 @@ class View {
     }
 
     render() {
-        // alter the uls to match game state
+        const $piles = $("ul.pile");
+        for (let towerIdx = 0; towerIdx < this.game.towers.length; towerIdx++) {
+            // get tower
+            let $tower = $($piles[towerIdx])
+
+            for (let discIdx = 0; discIdx < this.game.towers[towerIdx].length; discIdx++) {
+                // get disc
+                let currentDiscId = this.game.towers[towerIdx][discIdx];
+                let $currentDisc = $("li.disc" + currentDiscId);
+
+                // append disc to tower
+                $tower.prepend($currentDisc);
+            }
+        }
     }
 
     play() {
