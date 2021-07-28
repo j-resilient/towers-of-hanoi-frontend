@@ -2,12 +2,11 @@ class View {
     constructor(HanoiGame, $el) {
         this.game = HanoiGame;
         this.$el = $el;
-        this.clickedPile = undefined;
+        this.clickedPile = -1;
         
         this.setUpTowers();
         this.render();
-        // install a click handler on each ul, callback = clickTower
-        $("div.container").on("click", this.clickTower);
+        $("div.container").on("click", e => this.clickTower(e));
     }
 
     setUpTowers() {
@@ -56,12 +55,20 @@ class View {
         }
     }
 
-    clickTower() {
-        console.log("click!");
-        // on first click, get pile number and store in clickedPile
-        // on second click, attempt move
-        // reset clickedPile
-        // call render
+    clickTower(e) {
+        let $container = $(e.currentTarget);
+        let $tower = $($container.children("ul"));
+
+        if (this.clickedPile === -1) {
+            this.clickedPile = $tower.data("pile_id");
+        } else {
+            // on second click, attempt move
+            if (!this.game.move(this.clickedPile, $tower.data("pile_id"))) {
+                alert("Cannot move disc there!");
+            }
+            this.clickedPile = -1;
+        }
+        this.render();
     }
 }
 
