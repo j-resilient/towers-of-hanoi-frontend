@@ -30,7 +30,7 @@ class View {
     }
 
     _addDiscs($pile) {
-        for (let j = 0; j < 3; j++) {
+        for (let j = 1; j <= 3; j++) {
             let discClass = "disc" + j.toString();
             let $li = $("<li></li>");
             $li.addClass("disc " + discClass);
