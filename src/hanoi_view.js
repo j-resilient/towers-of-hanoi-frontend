@@ -7,6 +7,7 @@ class View {
         this.setUpTowers();
         this.render();
         // install a click handler on each ul, callback = clickTower
+        $("div.container").on("click", this.clickTower);
     }
 
     setUpTowers() {
@@ -55,11 +56,8 @@ class View {
         }
     }
 
-    play() {
-        // play until user has won
-    }
-
     clickTower() {
+        console.log("click!");
         // on first click, get pile number and store in clickedPile
         // on second click, attempt move
         // reset clickedPile
