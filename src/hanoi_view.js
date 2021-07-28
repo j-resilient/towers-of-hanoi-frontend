@@ -19,7 +19,7 @@ class View {
             let $container = $("<div></div>");
             $container.addClass("container");
             let $line = $("<div></div>");
-            $line.addClass("line");
+            $line.addClass("line line-unclicked");
 
             $container.append($pile);
             $container.append($line);
@@ -31,7 +31,7 @@ class View {
         for (let j = 1; j <= 3; j++) {
             let discClass = "disc" + j.toString();
             let $li = $("<li></li>");
-            $li.addClass("disc " + discClass);
+            $li.addClass("disc-unfin disc " + discClass);
             $li.data("disc_id", j);
             $pile.append($li);
         }
@@ -58,17 +58,28 @@ class View {
     clickTower(e) {
         let $container = $(e.currentTarget);
         let $tower = $($container.children("ul"));
-
+        
         if (this.clickedPile === -1) {
             this.clickedPile = $tower.data("pile_id");
+            let $line = $($container.children("div"));
+            $line.removeClass("line-unclicked");
+            $line.addClass("line-clicked");
+            
         } else {
             // on second click, attempt move
             if (!this.game.move(this.clickedPile, $tower.data("pile_id"))) {
                 alert("Cannot move disc there!");
             }
             this.clickedPile = -1;
+            $("div.line").addClass("line-unclicked");
+            $("div.line").removeClass("line-clicked");
         }
         this.render();
+    }
+
+    win() {
+        // change disc color
+        alert("Good work!");
     }
 }
 
