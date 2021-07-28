@@ -49,17 +49,31 @@ h1 {
 }
 
 .line {
-    background-color: black;
     height: 3%;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
 }
 
+.line-unclicked {
+    background-color: #FF9900;
+}
+
+.line-clicked {
+    background-color: #6599FF;
+}
+
 .disc {
-    background-color: gray;
     border-radius: 25px;
     margin-top: 5px;
+}
+
+.disc-unfin {
+    background-color: gray;
+}
+
+.disc-win {
+    background-color: #097054;
 }
 
 .disc3 {
