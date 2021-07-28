@@ -5,24 +5,35 @@ class View {
         this.clickedPile = undefined;
         
         this.setUpTowers();
+
         // call render
 
         // install a click handler on each ul, callback = clickTower
     }
 
     setUpTowers() {
-        // first ul should have 3 lis - one for each disc
         for (let i = 0; i < 3; i++) {
             let $pile = $("<ul></ul>");
+            $pile.addClass("pile");
             $pile.data("pile_id", i);
             if (i === 0) { $pile = this._addDiscs($pile); }
-            this.el.append($pile);
+
+            let $container = $("<div></div>");
+            $container.addClass("container");
+            let $line = $("<div></div>");
+            $line.addClass("line");
+
+            $container.append($pile);
+            $container.append($line);
+            this.el.append($container);
         }
     }
 
     _addDiscs($pile) {
         for (let j = 0; j < 3; j++) {
+            let discClass = "disc" + j.toString();
             let $li = $("<li></li>");
+            $li.addClass("disc " + discClass);
             $li.data("disc_id", j);
             $pile.append($li);
         }
