@@ -62,8 +62,7 @@ class View {
         if (this.clickedPile === -1) {
             this.clickedPile = $tower.data("pile_id");
             let $line = $($container.children("div"));
-            $line.removeClass("line-unclicked");
-            $line.addClass("line-clicked");
+            $line.toggleClass("line-unclicked line-clicked");
             
         } else {
             // on second click, attempt move
@@ -75,11 +74,14 @@ class View {
             $("div.line").removeClass("line-clicked");
         }
         this.render();
+
+        if (this.game.isWon()) { this.win(); }
     }
 
     win() {
-        // change disc color
+        $("li.disc").toggleClass("disc-unfin disc-win");
         alert("Good work!");
+        $("div.container").off("click");
     }
 }
 
